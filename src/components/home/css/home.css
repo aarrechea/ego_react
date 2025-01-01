@@ -1,0 +1,12 @@
+/* Home logo */
+#divHomeLogo {
+    display: flex;
+    margin-top: 4rem;
+    justify-content: center;
+    transition: width 0.5s;    
+}
+
+
+.divMain {
+    width: 80%;
+}

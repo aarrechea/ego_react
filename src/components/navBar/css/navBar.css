@@ -1,0 +1,82 @@
+/* General styles to the nav bar */
+.topnav {        
+    background-color: white; /* #333; */
+    overflow: hidden;
+    position:fixed;
+    top: 4rem;    
+    right: 0;
+    z-index: 1;
+    width: 20%;
+    height: 100%;
+    display: flex;    
+    flex-direction: column;
+    padding: 0rem;
+    padding-top: 1rem;
+    font-size: 1.4rem;    
+    transition: width 0.6s;
+    border-left: 1px solid black;
+}
+
+
+
+/* Paragraph */
+p {
+    display: block;
+    height: 0.2rem;
+    width: 90%;
+    background-color: antiquewhite;
+    float: right;    
+    align-self: flex-end;
+    margin: 1rem;
+}
+
+
+
+/* Button style */
+.btnNabBar {
+    width: 100%;
+    height: 2.5rem;
+    background-color: white;
+    border: none;
+    font-size: 1.4rem;
+    text-align: right;
+    padding-right: 2.5rem;
+
+    &:hover {
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.3rem;
+    }
+}
+
+.btnNavBarLavender {
+    background-color: lavender;
+}
+
+
+
+/* First div styles */
+#divNavBarFirst {
+    width: 100%;    
+    margin-right: 0;
+}
+
+
+
+/* Activities */
+#divNavBarActivities {
+    margin-top: 2rem;
+    margin-right: 0;
+    background-color: lavender;
+    height: 100%;
+    width: 100%;
+    padding-top: 2rem;
+}
+
+
+
+
+/* ----- Media queries for mobiles ----- */
+@media only screen and (max-width: 768px) {
+    
+}

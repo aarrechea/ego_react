@@ -1,0 +1,44 @@
+/* Main */
+.divCarCardMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15rem;
+    margin: 2rem 2rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.carCardLabelModel {
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.carCardLabelYear {
+    text-align: center;
+    width: 100%;
+}
+
+.carCardInputPrice {
+    border: none;
+    width: 5rem;
+    font-size: 1rem;
+    text-align: left;
+}
+
+
+
+
+
+/* ----- Media queries for mobiles ----- */
+@media only screen and (max-width: 768px) {
+    .divCarCardMain {        
+        width: 100%;
+        margin: 3rem auto;    
+    }
+}

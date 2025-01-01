@@ -1,0 +1,58 @@
+/* Main div */
+#divTopNavBarMain {
+    position: fixed;
+    display: flex;
+    width: 97%;
+    height: 4rem;
+    margin: 0 auto;
+    background-color: white;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    border-bottom: 1px solid lavender;  
+    z-index: 1;  
+}
+
+#divTopNavBarMain label {
+    transition: border 0.5s;
+}
+
+#divTopNavBarMain button {    
+    margin-left: auto;
+    height: 4rem;    
+    font-size: 1rem;    
+    text-align: right;
+    border: none;        
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+
+    &:hover {
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+#divTopNavBarMain span {
+    font-size: 1.6rem;
+    text-align: right;
+    float: right;
+}
+
+
+
+/* Ego logo */
+#imgTopNavBarEgoLogo:hover {
+    cursor: pointer;
+}
+
+
+
+
+/* ----- Media queries for mobiles ----- */
+@media only screen and (max-width: 768px) {
+    #divTopNavBarMain {        
+        padding-left: 2%;
+        padding-right: 1%;        
+    }
+}
