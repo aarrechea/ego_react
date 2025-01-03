@@ -44,8 +44,8 @@ const CarCard = (props:Car) => {
         </div>
     )
 };
-  
-  
+
+
 
 // Exports
 export default CarCard;

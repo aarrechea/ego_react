@@ -82,7 +82,7 @@ const CarFile = () => {
         
         features?.forEach((item, index) => {
             if(locations[index] === loc) {
-                photo ="http://127.0.0.1:8000/" + String(item.photo);
+                photo =String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;
@@ -143,7 +143,7 @@ const CarFile = () => {
             if(locations[index] === 2) {    
                                 
                 const obj = {
-                    'photo':"http://127.0.0.1:8000/" + String(item.photo),
+                    'photo':String(item.photo),
                     'alt':item.title,
                     'description':item.description,
                     'title':item.title
@@ -197,7 +197,7 @@ const CarFile = () => {
         
         features?.forEach((item, index) => {
             if(locations[index] === 3) {
-                photo ="http://127.0.0.1:8000/" + String(item.photo);
+                photo =String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;                
@@ -253,7 +253,7 @@ const CarFile = () => {
         
         features?.forEach((item, index) => {
             if(locations[index] === 4) {
-                photo ="http://127.0.0.1:8000/" + String(item.photo);
+                photo =String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;                
