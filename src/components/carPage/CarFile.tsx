@@ -53,8 +53,12 @@ const CarFile = () => {
     const [features, setFeatures] = useState<Feature[]>([]);
     const [locations, setLocations] = useState<number[]>([]);
     const [ratio, setRatio] = useState<number>();
-        
 
+
+    // State to add the first part of url to the photo url
+    const [url, setUrl] = useState('');
+    
+        
     // Base url
     const BASE_URL = process.env.REACT_APP_API_URL;        
 
@@ -62,7 +66,7 @@ const CarFile = () => {
     // Hanlde image on load
     const handleImageLoad = (e:SyntheticEvent<HTMLImageElement>) => {
         const { naturalHeight, naturalWidth } = e.currentTarget;                
-        const ratio = naturalWidth / naturalHeight        
+        const ratio = naturalWidth / naturalHeight
         setRatio(ratio);
     };
         
@@ -82,13 +86,21 @@ const CarFile = () => {
         
         features?.forEach((item, index) => {
             if(locations[index] === loc) {
-                photo =String(item.photo);
+                photo =url + String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;
                 designation = item.designation;
             }
         })
+
+
+        useEffect(() => {
+            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
+                setUrl("http://127.0.0.1:8000");
+            }
+        }, [])
+
 
         if (photo) {
             return (
@@ -132,6 +144,10 @@ const CarFile = () => {
 
     // Location two - Carousel
     const LocationTwo = () => {
+         // State to add the first part of url to the photo url
+        const [url, setUrl] = useState('');
+
+
         let carousel:carousel[] = [];
         let slidesPerView = 4;
 
@@ -143,7 +159,7 @@ const CarFile = () => {
             if(locations[index] === 2) {    
                                 
                 const obj = {
-                    'photo':String(item.photo),
+                    'photo':url + String(item.photo),
                     'alt':item.title,
                     'description':item.description,
                     'title':item.title
@@ -152,6 +168,13 @@ const CarFile = () => {
                 carousel.push(obj);
             }            
         })
+
+
+        useEffect(() => {
+            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
+                setUrl("http://127.0.0.1:8000");
+            }
+        }, [])
 
 
         return (
@@ -193,16 +216,36 @@ const CarFile = () => {
 
     // Location three
     const LocationThree = () => {
+         // State to add the first part of url to the photo url
+        const [url, setUrl] = useState('');
+
+
+        let style = {};
+
+        if (isMobile) {
+            style = {width:450, aspectRatio:ratio}
+        } else {
+            style = {width:559, aspectRatio:ratio}
+        }
+
+
         let photo, alt, title, description = '';
         
         features?.forEach((item, index) => {
             if(locations[index] === 3) {
-                photo =String(item.photo);
+                photo =url + String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;                
             }
         })
+
+
+        useEffect(() => {
+            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
+                setUrl("http://127.0.0.1:8000");
+            }
+        }, [])
 
         
         return (
@@ -215,7 +258,7 @@ const CarFile = () => {
                                 src={photo} 
                                 alt={alt}
                                 onLoad={handleImageLoad}
-                                style={{width:559, aspectRatio:ratio}}
+                                style={style}
                             />
                         </div>
 
@@ -249,18 +292,37 @@ const CarFile = () => {
 
     // Location four
     const LocationFour = () => {
+        // State to add the first part of url to the photo url
+        const [url, setUrl] = useState('');
+
+
+        let style = {};
+
+        if (isMobile) {
+            style = {width:450, aspectRatio:ratio}
+        } else {
+            style = {width:559, aspectRatio:ratio}
+        }
+
         let photo, alt, title, description = '';
         
         features?.forEach((item, index) => {
             if(locations[index] === 4) {
-                photo =String(item.photo);
+                photo =url + String(item.photo);
                 alt = item.title   
                 description = item.description;
                 title = item.title;                
             }
         })
 
-        
+
+        useEffect(() => {
+            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
+                setUrl("http://127.0.0.1:8000");
+            }
+        }, [])
+
+                
         return (
             <div id="divCarFileLocationFourMain" style={divWidth.three}>
                 <div id="divCarFileLocationFourImage">
@@ -268,7 +330,7 @@ const CarFile = () => {
                         src={photo} 
                         alt={alt}
                         onLoad={handleImageLoad}
-                        style={{width:559, aspectRatio:ratio}}
+                        style={style}
                     />
                 </div>
 
