@@ -14,14 +14,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useAppSelector } from "../../hooks/hooks";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import GeneralLocation from "../general/GeneralLocation";
 
 
 
 // Data types
-type location = {
-    loc:number,
-}
-
 type carousel = {
     photo:string, 
     alt:string, 
@@ -41,10 +38,11 @@ const CarFile = () => {
     // Nav bar state information
     const navBarState = useAppSelector(state => state.navBar);
     const [divWidth, setDivWidth] = useState({
-        one:{padding:'8% 8% 4% 8%'},
+        one:{padding:'8% 8% 4% 8%', margin:'0 auto'},
         two:'80%',
         swiper:'80%',
-        three:{margin:'2 auto'},        
+        three:{margin:'2 auto'},
+        descriptionLabel:{paddingRight:'12rem'}
     });    
 
 
@@ -70,77 +68,6 @@ const CarFile = () => {
         setRatio(ratio);
     };
         
-
-    // Location one
-    const Location:FC<location> = ({loc}) => {
-        let style = {};
-
-        if (isMobile) {
-            style = {width:450, aspectRatio:ratio}
-        } else {
-            style = {width:559, aspectRatio:ratio}
-        }
-
-
-        let photo, alt, designation, title, description = '';
-        
-        features?.forEach((item, index) => {
-            if(locations[index] === loc) {
-                photo =url + String(item.photo);
-                alt = item.title   
-                description = item.description;
-                title = item.title;
-                designation = item.designation;
-            }
-        })
-
-
-        useEffect(() => {
-            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
-                setUrl("http://127.0.0.1:8000");
-            }
-        }, [])
-
-
-        if (photo) {
-            return (
-                <div id="divCarFileLocationOneMain" style={divWidth.one}>
-                        <div id="divCarFileLocationOneImage">
-                            <img 
-                                src={photo} 
-                                alt={alt}
-                                onLoad={handleImageLoad}
-                                style={style}
-                            />
-                        </div>
-
-                        <div id="divCarFileLocationOneData">
-                            {loc === 1
-                                ?
-                                    <label id="labelCarFileLocationOneDesignation">{designation}</label>
-                                :
-                                    null
-                            }                    
-                            <label id="labelCarFileLocationOneTitle">{title}</label>
-                            <label id="labelCarFileLocationOneDescription">{description}</label>
-                        </div>
-                    </div>     
-                )
-
-        } else {
-            return (
-                <div id="divCarFileLocationOneMain" style={divWidth.one}>
-                    <h1 
-                        style={{textAlign:'center', width:'100%'}}
-                    >
-                        No hay datos sobre este auto aún.
-                    </h1>
-                </div>
-                
-            )
-        }                
-    };
-
 
     // Location two - Carousel
     const LocationTwo = () => {
@@ -362,28 +289,36 @@ const CarFile = () => {
         if (!isMobile) {
             if (navBarState.width === '20%') {
                 setDivWidth({
-                    one:{padding:'8% 8% 4% 8%'},
+                    one:{padding:'2% 8% 4% 8%', margin:'6rem auto 2rem 0px'},
                     two:'80%',
                     swiper:'80%',
-                    three:{margin:'2rem 0'}
+                    three:{margin:'2rem 0'},
+                    descriptionLabel:{paddingRight:'12rem'}
                 })
     
             } else {
                 setDivWidth({
-                    one:{padding:'8% 13% 4% 13%'},
+                    one:{padding:'2% 8% 4% 8%', margin:'6rem auto 2rem auto'},
                     two:'100%',
                     swiper:'60%',
-                    three:{margin:'0 auto'}                
+                    three:{margin:'0 auto'},
+                    descriptionLabel:{paddingRight:'12rem'}
                 })
             }
         } else {
             setDivWidth({
-                one:{padding:'0%'},
+                one:{padding:'0%', margin:'6rem auto 2rem auto'},
                 two:'100%',
                 swiper:'60%',
-                three:{margin:'2rem auto'}                
+                three:{margin:'2rem auto'},
+                descriptionLabel:{paddingRight:'1rem'}
             })
-        }        
+        }
+
+
+        if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
+            setUrl("http://127.0.0.1:8000");
+        }
 
     }, [BASE_URL, location.state.id, navBarState.width, isMobile]);
 
@@ -395,7 +330,18 @@ const CarFile = () => {
             <NavBar/>
             <TopNavBar/>
             
-            <Location loc={1}/>            
+            {/* <Location loc={1}/> */}
+            <GeneralLocation
+                styleDiv={{marginTop:'6rem'}}
+                isMobile={isMobile}
+                ratio={ratio}
+                features={features}
+                locations={locations}
+                actualLocation={1}
+                url={url}
+                handleImageLoad={handleImageLoad}     
+                divWidth={divWidth}           
+            />
             <LocationTwo/>
             <LocationThree/>
             <LocationFour/>
