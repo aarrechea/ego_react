@@ -1,0 +1,56 @@
+/* Main */
+#divCarFileLocationMain {
+    display: flex;
+    width: 65%;
+    margin: 2rem auto;
+    padding: 2% 8% 4% 8%;
+}
+
+    /* Data */
+    #divCarFileLocationData {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-left: 5rem;
+    }
+
+        /* Designation */
+        #labelCarFileLocationDesignation {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Title */
+        #labelCarFileLocationTitle {
+            font-size: 3.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        /* Description */
+        #labelCarFileLocationDescription {
+            font-size: 1.1rem;
+            padding-right: 12rem;
+            line-height: 1.5rem;
+        }
+
+
+
+
+
+
+/* ----- Media queries for mobiles ----- */
+@media only screen and (max-width: 768px) {
+    #divCarFileLocationMain {        
+        width: 98%;
+        margin: 2rem auto;
+        padding: 1%;
+        flex-direction: column;
+    }
+
+    #divCarFileLocationData {
+        width: 98%;        
+        padding: 1%;
+    }
+}

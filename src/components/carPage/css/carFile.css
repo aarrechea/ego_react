@@ -9,41 +9,6 @@
 
 
 
-/* Location one */
-#divCarFileLocationOneMain {
-    display: flex;
-    width: 65%;
-    margin: 2rem auto;
-    padding: 2% 8% 4% 8%;
-}
-
-#divCarFileLocationOneData {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-    padding-left: 5rem;
-}
-
-#labelCarFileLocationOneDesignation {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
-
-#labelCarFileLocationOneTitle {
-    font-size: 3.2rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-#labelCarFileLocationOneDescription {
-    font-size: 1.1rem;
-    padding-right: 12rem;
-    line-height: 1.5rem;
-}
-
-
-
 /* Carousel */
 #divCarFileLocationTwoMain {
     display: flex;
@@ -110,64 +75,6 @@
     --swiper-pagination-bullet-size: 8px;
     --swiper-pagination-bullet-width: 40px;
     --swiper-pagination-bullet-height: 8px;
-}
-
-
-
-/* Location three */
-#divCarFileLocationThreeMain {
-    display: flex;
-    width: 65%;
-    margin: 2rem 0;
-    padding: 2% 8% 4% 8%;
-}
-
-#divCarFileLocationThreeData {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-    padding-left: 5rem;
-}
-
-#labelCarFileLocationThreeTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-#labelCarFileLocationThreeDescription {
-    font-size: 1.1rem;
-    padding-right: 12rem;
-    line-height: 1.5rem;
-}
-
-
-
-/* Location four */
-#divCarFileLocationFourMain {
-    display: flex;
-    width: 65%;
-    margin: 2rem 0;
-    padding: 2% 8% 4% 8%;
-}
-
-#divCarFileLocationFourData {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-    padding-left: 5rem;
-}
-
-#labelCarFileLocationFourTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-#labelCarFileLocationFourDescription {
-    font-size: 1.1rem;
-    padding-right: 12rem;
-    line-height: 1.5rem;
 }
 
 

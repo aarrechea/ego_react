@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 import TopNavBar from "../navBar/TopNavBar";
 import "./css/carFile.css";
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import axios from "axios";
 import Car from "../models/CarModel";
 import Feature from "../models/FeatureModel";
@@ -37,13 +37,18 @@ const CarFile = () => {
 
     // Nav bar state information
     const navBarState = useAppSelector(state => state.navBar);
-    const [divWidth, setDivWidth] = useState({
-        one:{padding:'8% 8% 4% 8%', margin:'0 auto'},
+    const [divWidth, setDivWidth] = useState({        
         two:'80%',
         swiper:'80%',
         three:{margin:'2 auto'},
         descriptionLabel:{paddingRight:'12rem'}
-    });    
+    });
+    const [divMargin, setDivMargin] = useState({
+        marginTop:'6rem',
+        marginRight:'0rem',
+        marginBotton:'2rem',
+        marginLeft:'2rem'
+    });
 
 
     // State to hold the car
@@ -139,143 +144,13 @@ const CarFile = () => {
             </div>            
         )
     };
-
-
-    // Location three
-    const LocationThree = () => {
-         // State to add the first part of url to the photo url
-        const [url, setUrl] = useState('');
-
-
-        let style = {};
-
-        if (isMobile) {
-            style = {width:450, aspectRatio:ratio}
-        } else {
-            style = {width:559, aspectRatio:ratio}
-        }
-
-
-        let photo, alt, title, description = '';
-        
-        features?.forEach((item, index) => {
-            if(locations[index] === 3) {
-                photo =url + String(item.photo);
-                alt = item.title   
-                description = item.description;
-                title = item.title;                
-            }
-        })
-
-
-        useEffect(() => {
-            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
-                setUrl("http://127.0.0.1:8000");
-            }
-        }, [])
-
-        
-        return (
-            <div id="divCarFileLocationThreeMain" style={divWidth.three}>
-                {isMobile 
-                    ?
-                    <>
-                        <div>
-                            <img 
-                                src={photo} 
-                                alt={alt}
-                                onLoad={handleImageLoad}
-                                style={style}
-                            />
-                        </div>
-
-                        <div id="divCarFileLocationThreeData">                    
-                            <label id="labelCarFileLocationThreeTitle">{title}</label>
-                            <label id="labelCarFileLocationThreeDescription">{description}</label>
-                        </div>
-                    </>
-
-                    :
-                    <>
-                        <div id="divCarFileLocationThreeData">                    
-                            <label id="labelCarFileLocationThreeTitle">{title}</label>
-                            <label id="labelCarFileLocationThreeDescription">{description}</label>
-                        </div>
-
-                        <div>
-                            <img 
-                                src={photo} 
-                                alt={alt}
-                                onLoad={handleImageLoad}
-                                style={{width:559, aspectRatio:ratio}}
-                            />
-                        </div>
-                    </>                    
-                }
-            </div>            
-        )
-    };
-
-
-    // Location four
-    const LocationFour = () => {
-        // State to add the first part of url to the photo url
-        const [url, setUrl] = useState('');
-
-
-        let style = {};
-
-        if (isMobile) {
-            style = {width:450, aspectRatio:ratio}
-        } else {
-            style = {width:559, aspectRatio:ratio}
-        }
-
-        let photo, alt, title, description = '';
-        
-        features?.forEach((item, index) => {
-            if(locations[index] === 4) {
-                photo =url + String(item.photo);
-                alt = item.title   
-                description = item.description;
-                title = item.title;                
-            }
-        })
-
-
-        useEffect(() => {
-            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
-                setUrl("http://127.0.0.1:8000");
-            }
-        }, [])
-
-                
-        return (
-            <div id="divCarFileLocationFourMain" style={divWidth.three}>
-                <div id="divCarFileLocationFourImage">
-                    <img 
-                        src={photo} 
-                        alt={alt}
-                        onLoad={handleImageLoad}
-                        style={style}
-                    />
-                </div>
-
-                <div id="divCarFileLocationFourData">                    
-                    <label id="labelCarFileLocationFourTitle">{title}</label>
-                    <label id="labelCarFileLocationFourDescription">{description}</label>
-                </div>                
-            </div>            
-        )
-    };
-
+    
 
     // Getting the car
     useEffect(() => {
         axios
             .get(`${BASE_URL}/car/${location.state.id}`)
-            .then(res => {
-                //console.log("res data: ", res.data);
+            .then(res => {                
                 setCarInfo({...res.data})
                 setFeatures([...res.data.features])
                 setLocations([...res.data.locations])
@@ -288,26 +163,37 @@ const CarFile = () => {
         // Changing the width of the divs when the side nav bar hide or show 
         if (!isMobile) {
             if (navBarState.width === '20%') {
-                setDivWidth({
-                    one:{padding:'2% 8% 4% 8%', margin:'6rem auto 2rem 0px'},
+                setDivWidth({                    
                     two:'80%',
                     swiper:'80%',
                     three:{margin:'2rem 0'},
                     descriptionLabel:{paddingRight:'12rem'}
                 })
+                setDivMargin(prev => {
+                    return {
+                        ...prev,
+                        marginRight:'0rem',
+                        marginLeft:'0rem'
+                    }
+                })
     
             } else {
-                setDivWidth({
-                    one:{padding:'2% 8% 4% 8%', margin:'6rem auto 2rem auto'},
+                setDivWidth({                    
                     two:'100%',
                     swiper:'60%',
                     three:{margin:'0 auto'},
                     descriptionLabel:{paddingRight:'12rem'}
                 })
+                setDivMargin(prev => {
+                    return {
+                        ...prev,
+                        marginRight:'auto',
+                        marginLeft:'auto'
+                    }
+                })
             }
         } else {
-            setDivWidth({
-                one:{padding:'0%', margin:'6rem auto 2rem auto'},
+            setDivWidth({                
                 two:'100%',
                 swiper:'60%',
                 three:{margin:'2rem auto'},
@@ -340,12 +226,37 @@ const CarFile = () => {
                 actualLocation={1}
                 url={url}
                 handleImageLoad={handleImageLoad}     
-                divWidth={divWidth}           
+                divMargin={divMargin}
+                divWidth={divWidth}
             />
             <LocationTwo/>
-            <LocationThree/>
-            <LocationFour/>
 
+            <GeneralLocation
+                styleDiv={{marginTop:'0rem', flexDirection:isMobile ? 'column' : 'row-reverse'}}
+                isMobile={isMobile}
+                ratio={ratio}
+                features={features}
+                locations={locations}
+                actualLocation={3}
+                url={url}
+                handleImageLoad={handleImageLoad}     
+                divMargin={divMargin}
+                divWidth={divWidth}
+            />
+
+            <GeneralLocation
+                styleDiv={{marginTop:'0rem'}}
+                isMobile={isMobile}
+                ratio={ratio}
+                features={features}
+                locations={locations}
+                actualLocation={4}
+                url={url}
+                handleImageLoad={handleImageLoad}     
+                divMargin={divMargin}
+                divWidth={divWidth}
+            />
+            
             <p className="paragraphCarFileSeparator"/>
         </div>        
     )

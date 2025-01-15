@@ -15,21 +15,26 @@ interface Props {
     actualLocation:number;
     url?:string;
     handleImageLoad: (e: SyntheticEvent<HTMLImageElement>) => void;
+    divMargin:{        
+        marginTop:string,
+        marginRight:string,
+        marginBotton:string,
+        marginLeft:string
+    };
     divWidth:{
-        one:{},
         two:string,
         swiper:string,
         three:{},
         descriptionLabel:{}
-    };
+    }
 }
 
 
 
 // General location
-const GeneralLocation: React.FC<Props> = ({...Props}) => { 
+const GeneralLocation: React.FC<Props> = (Props) => { 
     // Constants, variables, and states
-    const {isMobile, ratio, features, locations, actualLocation, url, handleImageLoad, divWidth, styleDiv} = Props;
+    const {isMobile, ratio, features, locations, actualLocation, url, handleImageLoad, divMargin, divWidth, styleDiv} = Props;
     let photo, alt, designation, title, description = '';
     let style = {};
     
@@ -57,32 +62,28 @@ const GeneralLocation: React.FC<Props> = ({...Props}) => {
     
     if (photo) {
         return (
-            <div id="divCarFileLocationOneMain" style={{...styleDiv, ...divWidth.one}}>
-                    <div id="divCarFileLocationOneImage">
+            <div id="divCarFileLocationMain" style={{marginRight:divMargin.marginRight, marginLeft:divMargin.marginLeft, ...styleDiv}}>
+                    <div id="divCarFileLocationImage">
                         <img 
                             src={photo} 
                             alt={alt}
                             onLoad={handleImageLoad}
                             style={style}
                         />
-                    </div>
+                    </div>                    
 
-                    <div id="divCarFileLocationOneData">
-                        {actualLocation === 1
-                            ?
-                                <label id="labelCarFileLocationOneDesignation">{designation}</label>
-                            :
-                                null
-                        }                    
-                        <label id="labelCarFileLocationOneTitle">{title}</label>
-                        <label style={divWidth.descriptionLabel} id="labelCarFileLocationOneDescription">{description}</label>
+                    <div id="divCarFileLocationData">
+                        {designation !== '' && <label id="labelCarFileLocationDesignation">{designation}</label>}
+
+                        <label id="labelCarFileLocationTitle">{title}</label>
+                        <label style={divWidth.descriptionLabel} id="labelCarFileLocationDescription">{description}</label>
                     </div>
                 </div>     
             )
 
     } else {
         return (
-            <div id="divCarFileLocationOneMain" style={divWidth.one}>
+            <div id="divCarFileLocationMain">
                 <h1 
                     style={{textAlign:'center', width:'100%'}}
                 >
