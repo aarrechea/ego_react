@@ -15,6 +15,7 @@ import 'swiper/css/pagination';
 import { useAppSelector } from "../../hooks/hooks";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import GeneralLocation from "../general/GeneralLocation";
+import GeneralCarousel from "../general/GeneralCarousel";
 
 
 
@@ -225,11 +226,23 @@ const CarFile = () => {
                 locations={locations}
                 actualLocation={1}
                 url={url}
-                handleImageLoad={handleImageLoad}     
+                handleImageLoad={handleImageLoad}
                 divMargin={divMargin}
                 divWidth={divWidth}
             />
-            <LocationTwo/>
+
+            <GeneralCarousel
+                locations={locations}
+                actualLocation={2}
+                url={url}
+                handleImageLoad={handleImageLoad}
+                ratio={ratio}
+                isMobile={isMobile}
+                slides={4}
+                slidesMobile={1}
+                divWidth={divWidth}
+                features={features}
+            />
 
             <GeneralLocation
                 styleDiv={{marginTop:'0rem', flexDirection:isMobile ? 'column' : 'row-reverse'}}
