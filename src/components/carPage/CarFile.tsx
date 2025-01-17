@@ -7,25 +7,10 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import axios from "axios";
 import Car from "../models/CarModel";
 import Feature from "../models/FeatureModel";
-import {Swiper, SwiperSlide} from "swiper/react";
-import { Navigation, Pagination } from 'swiper/modules';
-import "swiper/css";
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import { useAppSelector } from "../../hooks/hooks";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import GeneralLocation from "../general/GeneralLocation";
 import GeneralCarousel from "../general/GeneralCarousel";
-
-
-
-// Data types
-type carousel = {
-    photo:string, 
-    alt:string, 
-    description:string, 
-    title:string
-}
 
 
 
@@ -74,79 +59,7 @@ const CarFile = () => {
         setRatio(ratio);
     };
         
-
-    // Location two - Carousel
-    const LocationTwo = () => {
-         // State to add the first part of url to the photo url
-        const [url, setUrl] = useState('');
-
-
-        let carousel:carousel[] = [];
-        let slidesPerView = 4;
-
-        if (isMobile) {
-            slidesPerView = 1;
-        }
-
-        features?.forEach((item, index) => {            
-            if(locations[index] === 2) {    
-                                
-                const obj = {
-                    'photo':url + String(item.photo),
-                    'alt':item.title,
-                    'description':item.description,
-                    'title':item.title
-                }
-
-                carousel.push(obj);
-            }            
-        })
-
-
-        useEffect(() => {
-            if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
-                setUrl("http://127.0.0.1:8000");
-            }
-        }, [])
-
-
-        return (
-            <div id="divCarFileLocationTwoMain" style={{width:divWidth.two}}>
-                <Swiper
-                    modules={[Navigation, Pagination]}
-                    navigation
-                    pagination={{ clickable: true }}                    
-                    spaceBetween={8}
-                    slidesPerView={slidesPerView}
-                    onSlideChange={() => console.log('slide change')}
-                    id="swiperCarFileLocationTwo"
-                    style={{width:divWidth.swiper}}
-                >
-                    {carousel.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="divSwiperMain">
-                                <div style={{textAlign:'center'}}>
-                                    <img 
-                                        src={item.photo} 
-                                        alt={item.alt}
-                                        onLoad={handleImageLoad}
-                                        style={{width:268, aspectRatio:ratio}}
-                                    />
-                                </div>
-                                
-                                <div className="divCarFileLocationTwoData">
-                                    <label className="labelCarFileLocationTwoTitle">{item.title}</label>
-                                    <label className="labelCarFileLocationTwoDescription">{item.description}</label>
-                                </div>
-                            </div>                            
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>            
-        )
-    };
     
-
     // Getting the car
     useEffect(() => {
         axios
