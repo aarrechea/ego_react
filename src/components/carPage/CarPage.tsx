@@ -20,7 +20,7 @@ const CarPage = () => {
     // States
     const [divMainWidth, setDivMainWidth] = useState({width:'80%'});
     const [cars, setCars] = useState<Car[]>([]);       
-    const [typeNumber, setTypeNumber] = useState(0);
+    const [typeNumber, setTypeNumber] = useState<number[]>([]);
     const [btnStyle, setBtnStyle] = useState({
         todos:{backgroundColor:'lavender'},
         autos:{backgroundColor:'white'},
@@ -171,19 +171,19 @@ const CarPage = () => {
 
         switch (type) {
             case 'todos':
-                setTypeNumber(0)                
+                setTypeNumber([])
                 break;
 
             case 'autos':
-                setTypeNumber(1)                
+                setTypeNumber([1])
                 break;
 
             case 'pick':
-                setTypeNumber(2)                
+                setTypeNumber([2,3])
                 break;
 
             default:
-                setTypeNumber(3)                
+                setTypeNumber([3,4])
                 break;
         }
 
@@ -211,11 +211,16 @@ const CarPage = () => {
         } else {
             setDivMainWidth({width:'100%'});
         }
+        
 
         // Getting the cars
         axios
-            .get(`${BASE_URL}/car`, { params: {data:typeNumber}})            
-            .then(res => {                
+            //.get(`${BASE_URL}/car`, { params: {data:typeNumber}})
+            .get(`${BASE_URL}/car/?type__in=${typeNumber}`)
+            .then(res => {
+
+                console.log("res data: ", res.data);
+
                 setCars([...res.data]);
             })
             .catch(error => {
@@ -266,7 +271,10 @@ const CarPage = () => {
                         ?
                             <h3 style={{width:'100%', textAlign:'center'}}>No hay autos con el filtro seleccionado</h3>
                         :
-                            cars.map((item, index) => {                        
+                            cars.map((item, index) => {
+
+                                console.log("item photo: ", item.photo);
+
                                 return (                                                                         
                                     <CarCard
                                         key={item.id}

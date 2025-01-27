@@ -38,14 +38,7 @@ const CarCard = (props:Car) => {
     };
 
 
-    useEffect(() => {
-        if (process.env.REACT_APP_API_URL === "http://127.0.0.1:8000/api") {
-            setUrl("http://127.0.0.1:8000");
-        }
-    }, [])
-
-
-
+    
     // Return
     return (
         <div id="divCarCardMain" className="divCarCardMain" onClick={handleClick}>
